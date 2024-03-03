@@ -1,5 +1,4 @@
 
 whisper
-stremlit
 gpt4all
 speech_recognition
