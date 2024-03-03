@@ -17,22 +17,22 @@ def generate_question():
             st.error(f"Error during question generation: {str(e)}")
 
 def generate_answers(question):
-    # You need to implement logic to generate multiple-choice answers based on the question.
-    # For simplicity, let's assume some generic answers here.
-    answers = ["Option A", "Option B", "Option C", "Option D"]
+    correct_answer = gpt4_model.generate("give me the correct answer to this question")
+    wrong_answers = gpt4_model.generate("give me three wrong answers seperated by commas")
+
+    answers = list(correct_answer + wrong_answers.split())
 
     # Display the answers
     selected_answer = st.radio("Choose the correct answer:", answers)
     
     if st.button("Check Answer"):
-        correct_answer = "Option A"  # Replace with the actual correct answer
         if selected_answer == correct_answer:
-            st.success("Correct! 🎉")
+            st.success("correct! 🎉")
         else:
-            st.error(f"Wrong! The correct answer is {correct_answer}.")
+            st.error(f"wrong! the correct answer is {correct_answer}.")
 
 # Streamlit app
-st.title("GPT-4 Quiz App")
+st.title("Quiz App")
 
 # Generate a question and answers
 generate_question()
