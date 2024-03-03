@@ -1,16 +1,16 @@
-"""import streamlit as st
+import streamlit as st
 from gpt4all import GPT4All
 
 # Initialize GPT-4 model
-gpt4_model = GPT4All(model_name="orca-mini-3b-gguf2-q4_0.gguf")
+gpt4_model = GPT4All(model_name="causallm_14b.Q8_0.gguf")
 
 def generate_question():
     prompt = "Generate a trivia question about:"
     user_input = st.text_input("Enter a topic:", "history")  # Default topic is history
-
+    print("user_input:", user_input)
     if st.button("Generate Question"):
         try:
-            generated_question = gpt4_model.generate(prompt + f" {user_input}")
+            generated_question = gpt4_model.generate(prompt + f" {user_input},")
             st.write("Generated Question:", generated_question)
             generate_answers(generated_question)
         except Exception as e:
@@ -40,4 +40,3 @@ st.title("Quiz App")
 
 # Generate a question and answers
 generate_question()
-"""
