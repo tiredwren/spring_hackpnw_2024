@@ -1,4 +1,4 @@
-import streamlit as st
+"""import streamlit as st
 from gpt4all import GPT4All
 
 # Initialize GPT-4 model
@@ -40,3 +40,4 @@ st.title("Quiz App")
 
 # Generate a question and answers
 generate_question()
+"""
