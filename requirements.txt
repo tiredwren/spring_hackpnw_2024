@@ -1,4 +1,3 @@
-os
 whisper
 stremlit
 gpt4all
