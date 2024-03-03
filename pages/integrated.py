@@ -13,7 +13,7 @@ gpt4_model = GPT4All(model_name="gpt4all-falcon-newbpe-q4_0.gguf")
 
 # Function to generate a question
 def generate_question(transcription):
-    prompt = ("Generate a trivia question About the information contained in the transcription:")
+    prompt = "Generate a trivia question About the information contained in the transcription: \n "
     try:
         # Get a random chunk of the transcription
         # start_index = random.randrange( 0, len(transcription), -200)  # Adjust 200 based on desired chunk size
@@ -21,6 +21,8 @@ def generate_question(transcription):
         # random_chunk = transcription[start_index:start_index + 200]  # Adjust 200 based on desired chunk size
         # print(random_chunk)
         data = transcription['text']
+        data = data[0:80]
+        print(data)
         generated_question = gpt4_model.generate(prompt + data)
         st.write(generated_question)
         generate_answers(generated_question)
