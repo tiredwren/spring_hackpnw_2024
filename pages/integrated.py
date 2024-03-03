@@ -3,27 +3,30 @@ import whisper
 from gpt4all import GPT4All
 from txtai.pipeline import Summary
 import os
-import random
 
 # Initialize Whisper model
 whisper_model = whisper.load_model("base")
+
 
 # Initialize GPT-4 model
 gpt4_model = GPT4All(model_name="gpt4all-falcon-newbpe-q4_0.gguf")
 
 # Function to generate a question
 def generate_question(transcription):
-    prompt = "generate a trivia question about:"
+    prompt = ("Generate a trivia question About the information contained in the transcription:")
     try:
         # Get a random chunk of the transcription
-        start_index = random.randint(0, len(transcription) - 200)  # Adjust 200 based on desired chunk size
-        random_chunk = transcription[start_index:start_index + 200]  # Adjust 200 based on desired chunk size
-
-        generated_question = gpt4_model.generate(prompt + f" {random_chunk}")
+        # start_index = random.randrange( 0, len(transcription), -200)  # Adjust 200 based on desired chunk size
+        # print(start_index)
+        # random_chunk = transcription[start_index:start_index + 200]  # Adjust 200 based on desired chunk size
+        # print(random_chunk)
+        data = transcription['text']
+        generated_question = gpt4_model.generate(prompt + data)
         st.write(generated_question)
         generate_answers(generated_question)
     except Exception as e:
         st.error(f"error during question generation: {str(e)}")
+        print(e)
 
 # Function to generate answers
 def generate_answers(question):
