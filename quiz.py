@@ -17,19 +17,23 @@ def generate_question():
             st.error(f"Error during question generation: {str(e)}")
 
 def generate_answers(question):
+    # Generate correct answer
     correct_answer = gpt4_model.generate("give me the correct answer to this question")
-    wrong_answers = gpt4_model.generate("give me three wrong answers seperated by commas")
 
-    answers = list(correct_answer + wrong_answers.split())
+    # Generate three wrong answers
+    wrong_answers = gpt4_model.generate("give me three wrong answers separated by commas")
+
+    # Combine correct and wrong answers into a list
+    answers = [correct_answer] + wrong_answers.split(", ")
 
     # Display the answers
     selected_answer = st.radio("Choose the correct answer:", answers)
-    
+
     if st.button("Check Answer"):
         if selected_answer == correct_answer:
-            st.success("correct! 🎉")
+            st.success("Correct! 🎉")
         else:
-            st.error(f"wrong! the correct answer is {correct_answer}.")
+            st.error(f"Wrong! The correct answer is {correct_answer}.")
 
 # Streamlit app
 st.title("Quiz App")
