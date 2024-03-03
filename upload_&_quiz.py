@@ -74,10 +74,8 @@ if audio_file is not None:
         temp_audio_file.write(audio_file.read())
 
     st.text("Audio file uploaded successfully.")
-
-    # Button to generate question
-    if st.button("Generate Question"):
-        generate_question(whisper_model.transcribe(temp_audio_path))
     os.remove(temp_audio_path)
 else:
     st.info("Please upload an audio file.")
+    
+st.radio("what is the cosine of 2pi/3",["32 inches", "24 inches", "50 inches", "120 inches"])
