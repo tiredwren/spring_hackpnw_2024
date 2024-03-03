@@ -2,21 +2,21 @@ import streamlit as st
 import whisper
 import os
 
-st.title("Whisper App")
+st.title("Please Upload a Recording of Your Lecture")
 
-# Upload audio file with streamlit
+# upload audio file
 audio_file = st.file_uploader("Upload Audio", type=["wav", "mp3", "m4a"])
 
-# Check if an audio file is uploaded
+# check if an audio file is uploaded
 if audio_file is not None:
     st.audio(audio_file, format="audio/*")
 
-    # Save the uploaded file to a temporary location
+    # save the uploaded file to temporary location
     temp_audio_path = "temp_audio_file.wav"
     with open(temp_audio_path, "wb") as temp_audio_file:
         temp_audio_file.write(audio_file.read())
 
-    # Load the whisper model
+    # load whisper model
     model = whisper.load_model("base")
     st.text("Whisper Model Loaded")
 
@@ -30,7 +30,6 @@ if audio_file is not None:
         except Exception as e:
             st.sidebar.error(f"Error during transcription: {str(e)}")
 
-    # Remove the temporary audio file after processing
     os.remove(temp_audio_path)
 else:
     st.info("Please upload an audio file.")
