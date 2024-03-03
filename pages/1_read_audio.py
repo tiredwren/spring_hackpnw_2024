@@ -1,4 +1,4 @@
-import streamlit as st
+"""import streamlit as st
 import whisper
 import os
 
@@ -33,3 +33,4 @@ if audio_file is not None:
     os.remove(temp_audio_path)
 else:
     st.info("Please upload an audio file.")
+"""
