@@ -1,21 +1,3 @@
-# Install dependencies
-
-# Linux
-# sudo apt update && sudo apt install ffmpeg
-
-# MacOS
-# brew install ffmpeg
-
-# Windows
-# chco install ffmpeg
-
-# Installing pytorch
-# conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia
-
-# Installing Whisper
-# pip install git+https://github.com/openai/whisper.git -q
-
-# pip install streamlit
 import streamlit as st
 import whisper
 
